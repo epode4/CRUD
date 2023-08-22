@@ -36,3 +36,12 @@ python manage.py runserver
 ```bash
 django-admin startapp <appname>
 ```
+9. 앱 등록 -> `settings.py`
+```python
+INSTALLES_APPS = [
+    ...
+    <app_name>,
+]
+```
+
+10. `urls.py` -> `views.py` -> 
