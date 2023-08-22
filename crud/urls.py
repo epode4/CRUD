@@ -20,6 +20,19 @@ from posts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Read 로직
     path('index/', views.index),
     path('posts/<int:id>/', views.detail),
+    
+    # Create 로직
+    path('posts/new/', views.new),
+    path('posts/create/', views.create),
+
+    # Delete 로직
+    path('posts/<int:id>/delete/', views.delete),
+
+    # Update 로직
+    path('posts/<int:id>/edit/', views.edit),
+    path('posts/<int:id>/update/', views.update),
 ]

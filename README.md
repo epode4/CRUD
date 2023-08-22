@@ -94,7 +94,13 @@ python manage.py createsuperuser
 
 ### 1. READ
 
-전체 게시물 출력
+- 전체 게시물 출력
+
+`urls.py`
+```python
+path('posts/index/', views.index),
+```
+`views.py`
 ```python 
 def index(request):
     posts = Post.objects.all()
@@ -104,6 +110,23 @@ def index(request):
     }
 
     return render(request, 'index.html', context)
+```
+
+`index.html`
+```python
+
+```
+
+- 하나의 게시물 출력
+```python
+def detail(request, id):
+    post = Post.object.get(id=id)
+
+    context = {
+        'post': post
+    }
+
+    return render(request,'detail.html', context)
 ```
 
 ### 2. Create
