@@ -44,4 +44,70 @@ INSTALLES_APPS = [
 ]
 ```
 
-10. `urls.py` -> `views.py` -> 
+10. `urls.py` -> `views.py` -> `templates/*.html` 순서로 코드 작성
+
+# Model
+## 프로젝트 작성
+
+1. 모델 정의 (`models.py`)
+    - 모델의 이름은 기본적으로 단수 형태
+
+```python 
+from django.db import models
+
+# Create your models here.
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content =  models.TextField()
+```
+
+2. 번역본 생성(PY + SQL)
+```bash
+python manage.py makemigrations
+```
+
+3. DB에 반영(SQL)
+```bash
+python manage.py migrate
+```
+
+4. SQL 스키마 확인
+```bash
+python manage.py sqlmigrate posts 0001
+```
+
+5. 생성한 모델 admin에 등록
+```python
+from .models import Post 
+
+# Register your models here.
+
+admin.site.register(Post)
+```
+
+6. 관리자 계정 생성
+```bash
+python manage.py createsuperuser
+```
+
+## CRUD 로직 작성
+
+### 1. READ
+
+전체 게시물 출력
+```python 
+def index(request):
+    posts = Post.objects.all()
+
+    context = {
+        'posts': posts
+    }
+
+    return render(request, 'index.html', context)
+```
+
+### 2. Create
+ 
+### 3. Delete
+
+### 4. Update
